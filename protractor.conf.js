@@ -58,8 +58,7 @@ exports.config = {
           method: "PUT",
           form: {
             status: "passed",
-            reason:
-              "I manually hardcoded this into the test cuz I am the best SE ever!",
+            reason: "",
           },
         });
       });
