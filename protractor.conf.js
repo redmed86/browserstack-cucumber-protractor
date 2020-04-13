@@ -1,9 +1,10 @@
-var request = require("request");
-var Agent = require("socks5-https-client/lib/Agent");
+// var request = require("request");
+// var Agent = require("socks5-https-client/lib/Agent");
 
 exports.config = {
-  seleniumAddress: "http://hub-cloud.browserstack.com/wd/hub",
-
+  //seleniumAddress: "http://hub-cloud.browserstack.com/wd/hub",
+  browserstackUser: process.env.BROWSERSTACK_USERNAME,
+  browserstackKey: process.env.BROWSERSTACK_ACCESS_KEY,
   framework: "custom",
   frameworkPath: require.resolve("protractor-cucumber-framework"),
 
@@ -13,8 +14,6 @@ exports.config = {
     format: "pretty",
   },
   commonCapabilities: {
-    "browserstack.user": "derekross2",
-    "browserstack.key": "xQSPtYh8qs29CBNRJ559",
     name: "Bstack-[Protractor-Cucumber] Test",
     build: "Bstack-[Protractor-Cucumber] Build",
   },
@@ -42,30 +41,31 @@ exports.config = {
     console.log(caps);
   },
 
-  onComplete: function () {
-    var updateStatus = function (jobName) {
-      browser.getSession().then(function (session) {
-        sessionId = session.getId();
-        console.log(sessionId);
-        var request = require("request");
-        request({
-          agentClass: Agent,
-          agentOptions: {
-            socksHost: "localhost", // Defaults to 'localhost'.
-            socksPort: 8080, // Defaults to 1080.
-          },
-          uri: `https://<basic_auth>@api.browserstack.com/automate/sessions/${sessionId}.json`,
-          method: "PUT",
-          form: {
-            status: "passed",
-            reason: "",
-          },
-        });
-      });
-    };
+  // onComplete: function () {
+  //   var updateStatus = function (jobName) {
+  //     browser.getSession().then(function (session) {
+  //       var sessionId = session.getId();
+  //       var username = process.env.BROWSERSTACK_USERNAME;
+  //       var accessKey = process.env.BROWSERSTACK_ACCESS_KEY;
+  //       console.log(sessionId);
+  //       var request = require("request");
+  //       request.put({
+  //         agentClass: Agent,
+  //         agentOptions: {
+  //           socksHost: "localhost", // Defaults to 'localhost'.
+  //           socksPort: 8888, // Defaults to 1080.
+  //         },
+  //         url: `http://${username}:${accessKey}@api.browserstack.com/automate/sessions/${sessionId}.json`,
+  //         form: {
+  //           status: "passed",
+  //           reason: "",
+  //         },
+  //       });
+  //     });
+  //   };
 
-    updateStatus();
-  },
+  //   updateStatus();
+  // },
 };
 
 // Code to support common capabilities
