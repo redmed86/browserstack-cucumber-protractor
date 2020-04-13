@@ -14,5 +14,10 @@
     "prestart-webdriver": "webdriver-manager update",
     "start-webdriver": "webdriver-manager start",
     "protractor": "protractor protractor.conf.js"
+  },
+  "dependencies": {
+    "request": "^2.88.2",
+    "socks5-http-client": "^1.0.4",
+    "socks5-https-client": "^1.2.1"
   }
 }
