@@ -54,7 +54,7 @@ exports.config = {
             socksHost: "localhost", // Defaults to 'localhost'.
             socksPort: 8080, // Defaults to 1080.
           },
-          uri: `https://derekross2:xQSPtYh8qs29CBNRJ559@api.browserstack.com/automate/sessions/${sessionId}.json`,
+          uri: `https://<basic_auth>@api.browserstack.com/automate/sessions/${sessionId}.json`,
           method: "PUT",
           form: {
             status: "passed",
